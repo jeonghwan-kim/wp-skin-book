@@ -5,4 +5,5 @@ wordpress skin - book
 
 test url
 ========
-http://localhost/wp-book/
+
+http://127.0.0.1/wp-book/
