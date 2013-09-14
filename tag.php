@@ -8,7 +8,6 @@
  */
 
 get_header(); ?>
-
 		<section id="primary">
 			<div id="content" role="main">
 
@@ -16,7 +15,7 @@ get_header(); ?>
 
 				<header class="page-header">
 					<h1 class="page-title"><?php
-						printf( __( 'Tag Archives: %s', 'twentyeleven' ), '<span>' . single_tag_title( '', false ) . '</span>' );
+						printf( __( '저자별: %s', 'twentyeleven' ), '<span>' . single_tag_title( '', false ) . '</span>' );
 					?></h1>
 
 					<?php

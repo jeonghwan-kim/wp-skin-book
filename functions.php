@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Twenty Eleven functions and definitions
  *
@@ -424,14 +425,13 @@ add_action( 'widgets_init', 'twentyeleven_widgets_init' );
 /**
  * Display navigation to next/previous pages when applicable
  */
-function twentyeleven_content_nav( $nav_id ) {
+function my_nav() {
 	global $wp_query;
 
 	if ( $wp_query->max_num_pages > 1 ) : ?>
-		<nav id="<?php echo $nav_id; ?>">
-			<h3 class="assistive-text"><?php _e( 'Post navigation', 'twentyeleven' ); ?></h3>
-			<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'twentyeleven' ) ); ?></div>
-			<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'twentyeleven' ) ); ?></div>
+		<nav class="my-nav">
+			<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> 이전', 'twentyeleven' ) ); ?></div>
+			<div class="nav-next"><?php previous_posts_link( __( '다음 <span class="meta-nav">&rarr;</span>', 'twentyeleven' ) ); ?></div>
 		</nav><!-- #nav-above -->
 	<?php endif;
 }
@@ -500,7 +500,7 @@ function twentyeleven_comment( $comment, $args, $depth ) {
 		case 'trackback' :
 	?>
 	<li class="post pingback">
-		<p><?php _e( 'Pingback:', 'twentyeleven' ); ?> <?php comment_author_link(); ?><?php edit_comment_link( __( 'Edit', 'twentyeleven' ), '<span class="edit-link">', '</span>' ); ?></p>
+		<p><?php _e( '여기를 링크한 문서:', 'twentyeleven' ); ?> <?php comment_author_link(); ?><?php edit_comment_link( __( 'Edit', 'twentyeleven' ), '<span class="edit-link">', '</span>' ); ?></p>
 	<?php
 			break;
 		default :
@@ -558,15 +558,16 @@ if ( ! function_exists( 'twentyeleven_posted_on' ) ) :
  *
  * @since Twenty Eleven 1.0
  */
-function twentyeleven_posted_on() {
-	printf( __( '<span class="sep">Posted on </span><a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s" pubdate>%4$s</time></a><span class="by-author"> <span class="sep"> by </span> <span class="author vcard"><a class="url fn n" href="%5$s" title="%6$s" rel="author">%7$s</a></span></span>', 'twentyeleven' ),
+function author_and_post_data($postID) {
+	printf( __( '지은이 : %8$s / <span class="sep">작성일 : </span><a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s" pubdate>%4$s</time></a><span class="by-author"> <span class="sep"> / 작성자 : </span> <span class="author vcard"><a class="url fn n" href="#" title="%6$s" rel="author">%7$s</a></span></span>', 'twentyeleven' ),
 		esc_url( get_permalink() ),
 		esc_attr( get_the_time() ),
 		esc_attr( get_the_date( 'c' ) ),
 		esc_html( get_the_date() ),
 		esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
 		sprintf( esc_attr__( 'View all posts by %s', 'twentyeleven' ), get_the_author() ),
-		esc_html( get_the_author() )
+		esc_html( get_the_author() ),
+		get_book_author($postID)
 	);
 }
 endif;
@@ -591,3 +592,95 @@ function twentyeleven_body_classes( $classes ) {
 }
 add_filter( 'body_class', 'twentyeleven_body_classes' );
 
+
+/**
+ * 사용자 정의 분류 추가
+ *
+ * @author Jeonghwan
+ * @since 2013. 9. 11.
+ */
+function create_my_taxonomies() {
+	register_taxonomy('book_author', 'post', 
+		array('hierarchial'=>false, /* false:tag, true: category */
+			  'label'=>'지은이',
+			  'query_var'=>true, 
+			  'rewrite'=>true));
+	register_taxonomy('publisher', 'post', 
+		array('hierarchial'=>false, 
+			  'label'=>'출판사',
+			  'query_var'=>true, 
+			  'rewrite'=>true));
+}
+add_action('init', 'create_my_taxonomies', 0);
+
+/**
+ * 인덱스 페이즈 표시 함수
+ * @since 2013. 9. 12. 
+ *  content.php 템플릿으로 변
+ */
+// function show_bookshelf($post) {
+// 	// 이미지 url 가져오기
+// 	$book_img_url = get_post_meta($post->ID, 'book_img_url', 1);
+	
+// 	// 포스팅 링크 가져오기
+// 	$post_link = get_permalink($post->ID);
+	
+// 	echo '<div class="the-book">';
+
+// 	// 이미지가 있는경우
+// 	if ($book_img_url) {
+// 		echo '<a href="#modal-'.$post->ID.'" data-toggle="modal"><img src="' . $book_img_url . '" /></a>'; 
+// 	}
+// 	// 이미지가 없는 경우
+// 	else {
+// 		// 기본 이미지와 책제 불러오기
+// 		$book_img_url = wp_get_attachment_image_src(659, 'full')[0];
+// 		$title = get_the_title($post->ID);
+// 		echo '<a href="#modal-'.$post->ID.'" data-toggle="modal"><img src="' . $book_img_url . '" /></a>'; 
+// 		echo '<a href="'.$post_link. '" class="layered-title"><span >'.$title.'</span></a>';
+// 	}
+
+// 	echo '</div>';
+// }
+
+
+/**
+ * 모달 화
+ * @since 2013. 9. 12. 
+ * 기능 미사용
+ */
+// function create_modal($post) {
+// 	$title = get_the_title($post->ID);
+// 	$link = get_permalink($post->ID);
+// 	echo '<div id="modal-'.$post->ID.'" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">';
+// 	  	echo '<div class="modal-header">';
+//     		echo '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>';
+//     		echo '<h3 id="myModalLabel" class="modal-title">'.$title.'</h3>';
+//   		echo '</div>';
+// 	  	echo '<div class="modal-body">';
+//     		the_excerpt();
+//   		echo '</div>';
+// 		echo '<div class="modal-footer">';
+// 			echo '<a class="btn btn-primary" href="'.$link.'">더보기</a>';
+// 			echo '<button class="btn" data-dismiss="modal" aria-hidden="true">닫기</button>';
+//   		echo '</div>';
+//   	echo '</div>';
+// }
+
+
+/**
+ * 저자정보가져오기 
+ * @since 2013. 9. 13. 
+ */
+function get_book_author($postID) 
+{
+	return get_the_term_list( $postID, 'book_author', '', ', ', '' ); 
+ }
+/**
+ * 춮란사 이름 가져오기 
+ * @since 2013. 9. 13. 
+ */
+function get_book_publisher($postID) 
+{
+	return get_the_term_list( $postID, 'publisher', '', ', ', '' ); 
+}

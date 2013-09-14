@@ -23,7 +23,8 @@
 <!--<![endif]-->
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
-<meta name="viewport" content="width=device-width" />
+<meta name="viewport" content="width=device-width, initial-scale=0.45, user-scalable=yes">
+
 <title><?php
 	/*
 	 * Print the <title> tag based on what is being viewed.
@@ -45,9 +46,6 @@
 		echo ' | ' . sprintf( __( 'Page %s', 'twentyeleven' ), max( $paged, $page ) );
 
 	?></title>
-<link rel="profile" href="http://gmpg.org/xfn/11" />
-<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
-<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 <!--[if lt IE 9]>
 <script src="<?php echo get_template_directory_uri(); ?>/js/html5.js" type="text/javascript"></script>
 <![endif]-->
@@ -63,23 +61,29 @@
 	 * generally use this hook to add elements to <head> such
 	 * as styles, scripts, and meta tags.
 	 */
+
 	wp_head();
 ?>
+<link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url'); ?>/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="<?php bloginfo('stylesheet_url'); ?>" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="<?php bloginfo('template_url');?>/js/bootstrap.min.js"></script>
 </head>
 
-<body <?php body_class(); ?>>
-<div id="page" class="hfeed">
+<body>
 	<header id="branding" role="banner">
+		<div class="my-container">
+			<div class="header-outer">
 			<hgroup>
 				<h1 id="site-title"><span><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></span></h1>
-				<!--<h2 id="site-description"><?php bloginfo( 'description' ); ?></h2>-->
 			</hgroup>
-
 			<?php get_search_form(); ?>
-				
-			<hr />
-	
+			</div>
+		</div>
 	</header><!-- #branding -->
 
+	<div class="header-span"></div>
 
-	<div id="main">
+	<div class="my-container">
+
+<?php wp_head(); ?>

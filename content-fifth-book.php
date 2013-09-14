@@ -20,7 +20,7 @@
 	<!-- tooltip string -->
 	<?php $tooltip_msg = $title . ' / ' . $author; ?>
 	
-	<div class="the-book"  data-original-title="<?php echo $tooltip_msg; ?>" >
+	<div class="the-fifth-book"  data-original-title="<?php echo $tooltip_msg; ?>" >
 
 
 		<!-- 이미지가 있는경우 -->

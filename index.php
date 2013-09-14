@@ -14,39 +14,43 @@
 
 get_header(); ?>
 
-		<div id="primary">
-			<div id="content" role="main">
+<div class="bookshelf" role="main">
 
-			<?php if ( have_posts() ) : ?>
+<?php $i = 0; // 5번째 이미지 체크 변수 ?>
+<?php if ( have_posts() ) : ?>
 
-				<?php twentyeleven_content_nav( 'nav-above' ); ?>
+	<?php //twentyeleven_content_nav( 'nav-above' ); ?>
 
-				<?php /* Start the Loop */ ?>
-				<?php while ( have_posts() ) : the_post(); ?>
+	<?php /* Start the Loop */ ?>
+	<?php while ( have_posts() ) : the_post(); ?>
 
-					<?php get_template_part( 'content', get_post_format() ); ?>
+		<?php if (++$i % 5 == 0) : ?>
+		<?php get_template_part( 'content-fifth-book', get_post_format() ); ?>
+		<?php else : ?>
+		<?php get_template_part( 'content', get_post_format() ); ?>
+		<?php endif; ?>
 
-				<?php endwhile; ?>
 
-				<?php twentyeleven_content_nav( 'nav-below' ); ?>
+	<?php endwhile; ?>
 
-			<?php else : ?>
+	<?php my_nav(); ?>
+	<?php //twentyeleven_content_nav( 'nav-below' ); ?>
 
-				<article id="post-0" class="post no-results not-found">
-					<header class="entry-header">
-						<h1 class="entry-title"><?php _e( 'Nothing Found', 'twentyeleven' ); ?></h1>
-					</header><!-- .entry-header -->
+<?php else : ?>
 
-					<div class="entry-content">
-						<p><?php _e( 'Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post.', 'twentyeleven' ); ?></p>
-						<?php get_search_form(); ?>
-					</div><!-- .entry-content -->
-				</article><!-- #post-0 -->
+	<article id="post-0" class="post no-results not-found">
+		<header class="entry-header">
+			<h1 class="entry-title"><?php _e( 'Nothing Found', 'twentyeleven' ); ?></h1>
+		</header><!-- .entry-header -->
 
-			<?php endif; ?>
+		<div class="entry-content">
+			<p><?php _e( 'Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post.', 'twentyeleven' ); ?></p>
+			<?php get_search_form(); ?>
+		</div><!-- .entry-content -->
+	</article><!-- #post-0 -->
 
-			</div><!-- #content -->
-		</div><!-- #primary -->
+<?php endif; ?>
 
-<?php get_sidebar(); ?>
+</div><!-- bookshelf -->
+
 <?php get_footer(); ?>
