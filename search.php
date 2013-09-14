@@ -9,6 +9,8 @@
 
 get_header(); ?>
 
+<?php $i = 0; // 5번째 이미지 체크 변수 ?>
+
 <?php if ( have_posts() ) : ?>
 
 	<?php /* Start the Loop */ ?>
@@ -19,12 +21,18 @@ get_header(); ?>
 			 * If you want to overload this in a child theme then include a file
 			 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
 			 */
-			get_template_part( 'content', get_post_format() );
+
+			if (++$i % 5 == 0) :
+				get_template_part( 'content-fifth-book', get_post_format() );
+			else :
+				get_template_part( 'content', get_post_format() );
+			endif;
+
 		?>
 
 	<?php endwhile; ?>
 
-	<?php twentyeleven_content_nav( 'nav-below' ); ?>
+	<?php my_nav(); ?>
 
 <?php else : ?>
 

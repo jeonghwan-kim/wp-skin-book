@@ -7,6 +7,8 @@
  * @since Twenty Eleven 1.0
  */
 ?>
+
+<!-- 포스트 -->
 <?php if ( 'post' == get_post_type() ) : ?>
 	
 	<!-- 이미지 url 가져오기 -->
@@ -22,31 +24,49 @@
 	
 	<div class="the-book"  data-original-title="<?php echo $tooltip_msg; ?>" >
 
+          <!-- 이미지가 있는경우 -->
+          <?php if ($book_img_url) :?>
+               <a href="<?php echo $post_link; ?>" >
+                    <img src="<?php echo $book_img_url; ?>" />
+               </a>
 
-		<!-- 이미지가 있는경우 -->
-		<?php if ($book_img_url) :?>
-			<a href="<?php echo $post_link; ?>" >
-				<img src="<?php echo $book_img_url; ?>" />
-			</a>
-
-		 <!-- 이미지가 없는 경우 -->
-		<?php else : ?>
-			<!-- 기본 이미지 로딩 -->
-			<?php $book_img_url = wp_get_attachment_image_src(659, 'full')[0]; ?>
-			<a href="<?php echo $post_link; ?>" >
-				<img src="<?php echo $book_img_url; ?>" />
-			</a>
-			<a href="<?php echo $post_link; ?>" class="layered-title">
-				<span ><?php echo $title; ?></span></a>
-		<?php endif; ?>
-
-
+           <!-- 이미지가 없는 경우 -->
+          <?php else : ?>
+               <!-- 기본 이미지 로딩 -->
+               <?php $book_img_url = wp_get_attachment_image_src(659, 'full')[0]; ?>
+               <a href="<?php echo $post_link; ?>" >
+                    <img src="<?php echo $book_img_url; ?>" />
+               </a>
+               <a href="<?php echo $post_link; ?>" class="layered-title">
+                    <span ><?php echo $title; ?></span></a>
+                   
+          <?php endif; ?>
 	</div>
 
-	<script type="text/javascript">
-		$(".the-book").tooltip({placement: 'top'});
-	</script>
+<!-- 페이지 -->
+<?php else: ?>
+	
+	<?php $page_link = get_permalink($page->ID); ?>
+	<!-- 페이지 제목 얻기 -->
+	<?php $title = get_the_title($page->ID); ?>
+	<!-- tooltip string -->
+	<?php $tooltip_msg = $title; ?>
+		
+	<div class="the-book"  data-original-title="<?php echo $tooltip_msg; ?>" >
+
+		<!-- 기본 이미지 로딩 -->
+		<?php $book_img_url = wp_get_attachment_image_src(659, 'full')[0]; ?>
+		<a href="<?php echo $page_link; ?>" >
+		    <img src="<?php echo $book_img_url; ?>" />
+		</a>
+		<a href="<?php echo $page_link; ?>" class="layered-title">
+		    <span ><?php echo $title; ?></span></a>
+                   
+	</div>
 
 <?php endif; ?>
 
+<script type="text/javascript">
+	$(".the-book").tooltip({placement: 'top'});
+</script>
 	

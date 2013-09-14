@@ -14,6 +14,8 @@
 
 get_header(); ?>
 
+<?php $i = 0; // 5번째 이미지 체크 변수 ?>
+
 <?php if ( have_posts() ) : ?>
 
 	<header class="page-header">
@@ -36,9 +38,8 @@ get_header(); ?>
 		</h1>
 	</header>
 
-	<?php twentyeleven_content_nav( 'nav-above' ); ?>
-
 	<?php /* Start the Loop */ ?>
+	
 	<?php while ( have_posts() ) : the_post(); ?>
 
 		<?php
@@ -47,12 +48,18 @@ get_header(); ?>
 			 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
 			 */
 
-			get_template_part( 'content', get_post_format() );
+			if (++$i % 5 == 0) :
+				get_template_part( 'content-fifth-book', get_post_format() );
+			else :
+				get_template_part( 'content', get_post_format() );
+			endif;
+
+
 		?>
 
 	<?php endwhile; ?>
 
-	<?php twentyeleven_content_nav( 'nav-below' ); ?>
+	<?php my_nav(); ?>
 
 <?php else : ?>
 
