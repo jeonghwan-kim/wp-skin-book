@@ -1,9 +1,6 @@
 wp-skin-book
 ============
 
-wordpress skin - book
+wordpress skin like the bookshelf.
 
-test url
-========
-
-http://127.0.0.1/wp-book/
+http:54.250.223.230/book
