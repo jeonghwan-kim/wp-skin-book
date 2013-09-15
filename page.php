@@ -14,16 +14,18 @@
 
 get_header(); ?>
 
-		<div id="primary">
-			<div id="content" role="main">
 
-				<?php the_post(); ?>
+<?php the_post(); ?>
 
-				<?php get_template_part( 'content', 'page' ); ?>
+<!-- 페이지 분기  -->
 
-				<?php comments_template( '', true ); ?>
+<!-- 분석페이지 -->
+<?php if ($post->ID == 680): get_template_part( 'content-analysis', 'page' ); ?>
 
-			</div><!-- #content -->
-		</div><!-- #primary -->
+<!-- 기본 페이지 -->
+<?php else: get_template_part( 'content', 'page' ); ?>
+
+<?php endif;?>
 
 <?php get_footer(); ?>
+

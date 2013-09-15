@@ -2,9 +2,6 @@
 /**
  * The default template for displaying content
  * indext 화면 표시
- * @package WordPress
- * @subpackage Twenty_Eleven
- * @since Twenty Eleven 1.0
  */
 ?>
 
@@ -22,7 +19,7 @@
 	<!-- tooltip string -->
 	<?php $tooltip_msg = $title . ' / ' . $author; ?>
 	
-	<div class="the-book"  data-original-title="<?php echo $tooltip_msg; ?>" >
+	<div class="the-fifth-book"  data-original-title="<?php echo $tooltip_msg; ?>" >
 
           <!-- 이미지가 있는경우 -->
           <?php if ($book_img_url) :?>
@@ -52,7 +49,7 @@
 	<!-- tooltip string -->
 	<?php $tooltip_msg = $title; ?>
 		
-	<div class="the-book"  data-original-title="<?php echo $tooltip_msg; ?>" >
+	<div class="the-fifth-book"  data-original-title="<?php echo $tooltip_msg; ?>" >
 
 		<!-- 기본 이미지 로딩 -->
 		<?php $book_img_url = wp_get_attachment_image_src(659, 'full')[0]; ?>
@@ -67,6 +64,6 @@
 <?php endif; ?>
 
 <script type="text/javascript">
-	$(".the-book").tooltip({placement: 'top'});
+	$(".the-fifth-book").tooltip({placement: 'top'});
 </script>
 	
