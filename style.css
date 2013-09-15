@@ -2271,8 +2271,7 @@ p.comment-form-comment {
 /* =Media
 ----------------------------------------------- */
 
-@media all and (max-width:480px) 
-{ 
+@media all and (max-width:480px) { 
 	.header-span {
 		width: 700px;
 		height:0px;
@@ -2362,6 +2361,7 @@ p.comment-form-comment {
 }
 #google-chart-author , #google-chart-publisher {
 	margin-top: 40px;
+	height: 200px;
 }
 
 #google-chart-month, #google-chart-year {

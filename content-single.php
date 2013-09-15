@@ -15,7 +15,7 @@
 
 		<?php if ( 'post' == get_post_type() ) : ?>
 		<div class="entry-meta">
-			<?php author_and_post_data($post->ID); ?>
+			<?php book_meta($post->ID); ?>
 		</div><!-- .entry-meta -->
 		<?php endif; ?>
 
@@ -33,3 +33,23 @@
 	</footer><!-- .entry-meta -->
 </div>
 
+
+<?php
+/**
+ * 저자, 작성일 표시하는 html 반환한다.
+ *
+ * @since 2013. 9. 15. 
+ */
+function book_meta($postID) {
+	printf( __( '지은이 : %3$s / '.
+		'출판사 : %4$s / ' .
+		'<span class="sep">작성일 : </span><time class="entry-date">%1$s</time>'.
+		' / 작성자 : <span class="author vcard">%2$s</span>'),
+		esc_html( get_the_date() ),
+		esc_html( get_the_author() ),
+		get_book_author($postID),
+		get_book_publisher($postID)
+	);
+}
+
+?>
