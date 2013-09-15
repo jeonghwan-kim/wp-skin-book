@@ -182,6 +182,7 @@ function search_error_msg()
 </script>
 ```
 
+
 3. Open wp-admin/edit-form-advanced.php and add the below codes
 
 ```php
