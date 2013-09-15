@@ -18,13 +18,14 @@ get_header(); ?>
 <?php the_post(); ?>
 
 <!-- 페이지 분기  -->
-<?php 
-if ($post->ID == 680): get_template_part( 'content-analysis', 'page' );
-else: get_template_part( 'content', 'page' ); 
-endif;
-?>
 
-<?php //comments_template( '', true ); ?>
+<!-- 분석페이지 -->
+<?php if ($post->ID == 680): get_template_part( 'content-analysis', 'page' ); ?>
 
+<!-- 기본 페이지 -->
+<?php else: get_template_part( 'content', 'page' ); ?>
+
+<?php endif;?>
 
 <?php get_footer(); ?>
+

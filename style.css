@@ -155,6 +155,19 @@ body {
 	margin: 0 7.6%;
 	width: auto;
 }
+.error404 {
+
+}
+.error404 h1 {
+	font-size: 20px;
+	color: #ccc;
+}
+.error404-image {
+	background: url('images/404.png') no-repeat;
+	height:312px;
+	width:484px;
+	margin: 30px auto 40px auto;
+}
 
 /* Alignment */
 .alignleft {
@@ -1729,6 +1742,11 @@ section.recent-posts .other-recent-posts li:after {
 	padding-left: .5em;
 }
 
+/* 하단 네비게이션 */
+.my-nav {
+	margin-bottom: 1.625em;
+	clear: left;
+}
 
 /* =Widgets
 ----------------------------------------------- */
@@ -2250,19 +2268,28 @@ p.comment-form-comment {
 }
 
 
-/* =Responsive Structure
+/* =Media
 ----------------------------------------------- */
 
-@media only screen (max-device-width: 1480px) {
-	.header-outer {
-		background-color:red;
+@media all and (max-width:480px) 
+{ 
+	.header-span {
+		width: 700px;
+		height:0px;
+		padding:0px;
+		margin:0 0 20px 0;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+		box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+	}	
+	.footer_bar {
+		box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+		width: 700px;
 	}
-
 }
 
 
-
-/* = by Jeonghwan
+/* =by Jeonghwan
 ----------------------------------------------- */
 
 .my-container {
@@ -2270,6 +2297,8 @@ p.comment-form-comment {
 	margin: 0 auto;
 	overflow: auto; /* float 엘레멘트 고정 */
 }
+
+/*책장구조*/
 .bookshelf {
 	top: 100px;
 }
@@ -2306,27 +2335,53 @@ p.comment-form-comment {
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
 }
-.right-btn {
-	float: right;
-}
-.header-outer {
-	padding-top: 20px;
-}
 
+/*분석 페이지*/
 #analysis-btn{
 	display: none;
 	position: absolute;
 	margin: -28px 0 0 400px;
-	/*left: 400px;*/
-	/*top: 44px;*/
+}
+.analysis h1 {
+	font-size: 30px;
+	color: #ddd;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.analysis .one-box { 
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+	padding: 30px 0 30px 0;
+}
+.one-box .graph-title {
+	text-align: center;
+	color: #ccc;
+	margin-top: 10px;
+	font-size: 12px;
 
 }
+#google-chart-author , #google-chart-publisher {
+	margin-top: 40px;
+}
 
+#google-chart-month, #google-chart-year {
+	margin-top: 30px;
+}
+
+/* 모달 페이지 */
 .modal-title {
 	font-size: 25px;
 }
+.modal-body li{
+	font-size: 20px;
+	margin-bottom: 20px;
+	list-style-type: none;
+}
+.modal-list {
+	color: #1982d1;
+}
 
-
+/* 포스트 */
 .post-note {
 	background-image: url('images/note-post.png');
 	padding: 10px 10px 10px 30px;
@@ -2335,94 +2390,50 @@ p.comment-form-comment {
 	background-image: url('images/note-page.png');
 	padding: 10px 10px 10px 30px;
 }
-/*.entry-content blockquote p{
-	font-family: inherit;
-	font-size: 14px;
-}*/
 .entry-content h1 {
 	font-size: 25px;
 }
 .entry-content p, .entry-content ul , .entry-content ol {
 	font-size: 18px;
 }
-.entry-content li {
-	/*margin-bottom: 10px;*/
-}
-.below-line-note {
-	padding-top: 10px; 
-}
 
+
+/*검색결과 없음*/
 .no-result , .not-found {
+	color:#ccc;
+}
+.no-result .entry-title, .not-found .entry-title {
 	color:white;
 }
 .no-result input#s:focus, .not-found input#s:focus {
 	background-color: white;
 }
 
+/*기타*/
 .page-header {
 	color:#ddd;
 	margin-bottom: 30px;
-
 }
-
-.analysis {
-	/*background-color: white;*/
-	/*margin-top: 30px;*/
-}
-.analysis h1 {
-	font-size: 30px;
-	color: #ddd;
-	margin-top: 10px;
-	margin-bottom: 10px;
-}
-.analysis .one_box { 
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
-	padding: 30px 0 30px 0;
-}
-
 .white_font {
 	color: white;
 }
-
-.footer_bar {
+.footer-bar {
 	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 	width: 100%;
 }
-
-#google_chart_month {
-	margin-top: 30px;
+.below-line-note {
+	padding-top: 10px; 
+	padding-bottom: 25px; 
 }
-
-.modal-body li{
-	font-size: 20px;
-	margin-bottom: 20px;
-	list-style-type: none;
+.right-btn {
+	float: right;
 }
-.modal_list {
-	color: #1982d1;
+.header-outer {
+	padding-top: 20px;
 }
 
 
-@media all and (max-width:480px) 
-{ 
-	.header-span {
-		width: 700px;
-		height:0px;
-		padding:0px;
-		margin:0 0 20px 0;
-		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-		box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
-	}	
-	.footer_bar {
-		box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
-		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-		width: 700px;
-	}
-}
 
-.my-nav {
-	margin-bottom: 1.625em;
-	clear: left;
-}
+
+

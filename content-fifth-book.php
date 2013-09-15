@@ -2,9 +2,6 @@
 /**
  * The default template for displaying content
  * indext 화면 표시
- * @package WordPress
- * @subpackage Twenty_Eleven
- * @since Twenty Eleven 1.0
  */
 ?>
 

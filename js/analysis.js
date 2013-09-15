@@ -3,19 +3,21 @@ $(window).load(function() {
 	var current_path = $("#current_path").val();
 
 	// 저자별 분석 그래프
-	$.get(current_path + "/ajax/get-authors.php", function(data, statues) {
+	$.get(current_path + "/ajax/get-top-tag-freq.php?tag_name=book_author&num=5", 
+		function(data, statues) {
 		google.load("visualization", "1", {packages:["corechart"], 
 		    callback:function() {
-		        draw_chart_author("google_chart_author", data);
+		        draw_chart_author("google-chart-author", data);
 		    }
 		});
 	});
 
 	// 출판사별 분석 그래
-	$.get(current_path + "/ajax/get-publishers.php", function(data, statues) {
+	$.get(current_path + "/ajax/get-top-tag-freq.php?tag_name=publisher&num=5", 
+		function(data, statues) {
 		google.load("visualization", "1", {packages:["corechart"], 
 		    callback:function() {
-		        draw_chart_publisher("google_chart_publisher", data);
+		        draw_chart_publisher("google-chart-publisher", data);
 		    }
 		});
 	});
@@ -24,7 +26,7 @@ $(window).load(function() {
 	$.get(current_path + "/ajax/get-month.php", function(data, statues) {
 		google.load("visualization", "1", {packages:["corechart"], 
 		    callback:function() {
-		        draw_chart_month("google_chart_month", data);
+		        draw_chart_month("google-chart-month", data);
 		    }
 		});
 	});
@@ -33,7 +35,7 @@ $(window).load(function() {
 	$.get(current_path + "/ajax/get-year.php", function(data, statues) {
 		google.load("visualization", "1", {packages:["corechart"], 
 		    callback:function() {
-		        draw_chart_year("google_chart_year", data);
+		        draw_chart_year("google-chart-year", data);
 		    }
 		});
 	});
@@ -50,12 +52,10 @@ function draw_chart_author(chart_div, data) {
 	}
 
 	var options = {
-		title: '',
-		// width: 700,
-		height: 250,
+		title: '상위 5명의 저자',
 		backgroundColor: 'transparent',
-		// colors:['#618FFC'],
-		legend: 'none'
+		chartArea: {width: '100%', height: '100%'},
+		legend: 'none',
 		};
 
 	var chart = new google.visualization.PieChart(document.getElementById(chart_div));
@@ -73,13 +73,11 @@ function draw_chart_publisher(chart_div, data) {
 	}
 
 	var options = {
-		title: '',
-		// width: 700,
-		height: 250,
+		title: '상위 5개의 출판사',
 		backgroundColor: 'transparent',
-		// colors:['#618FFC'],
-		legend: 'none'
-		};
+		chartArea: {width: '100%', height: '100%'},
+		legend: 'none',
+		};		
 
 	var chart = new google.visualization.PieChart(document.getElementById(chart_div));
 

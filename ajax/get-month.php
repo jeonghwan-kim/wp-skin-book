@@ -7,7 +7,7 @@ require_once('../../../../wp-load.php' );
 // 최근 12개월 구독수
 $result = array();
 $m = date('Ym');
-for ($i=1; $i<=12; $i++)
+for ($i = 1; $i <= 12; $i++)
 {
 	// 요청
 	$posts = query_posts('post_status=publish&m='.$m);
