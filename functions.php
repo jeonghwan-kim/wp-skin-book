@@ -117,7 +117,7 @@ add_action('init', 'create_my_taxonomies', 0);
 function get_book_author($postID) 
 {
 	return get_the_term_list( $postID, 'book_author', '', ', ', '' ); 
- }
+}
 
  
 /**
@@ -128,3 +128,10 @@ function get_book_publisher($postID)
 {
 	return get_the_term_list( $postID, 'publisher', '', ', ', '' ); 
 }
+
+
+/**
+ * 에디터 스타일 시트 로딩
+ * @since 2013. 9. 16. 
+ */
+add_editor_style();
