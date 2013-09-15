@@ -12,7 +12,7 @@ http://dna.daum.net/apis/search/ref#book
 
 If you want to write with it, you shold follow below steps.
 
-1. Add new file in wp-admin folder (new filename: search-book-api.php)
+step 1. Add new file in wp-admin folder (new filename: search-book-api.php)
 
 You have to recieve the api key form the daum site.
 
@@ -74,7 +74,7 @@ function trim_string($str)
 ?>
 ```
 
-2. Add new file in wp-admin folder (new filename: search-book-widget.php)
+step 2. Add new file in wp-admin folder (new filename: search-book-widget.php)
 
 ```php
 <div class="postbox">
@@ -183,7 +183,7 @@ function search_error_msg()
 ```
 
 
-3. Open wp-admin/edit-form-advanced.php and add the below codes
+step 3. Open wp-admin/edit-form-advanced.php and add the below codes
 
 ```php
 <?php
