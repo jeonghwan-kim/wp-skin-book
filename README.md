@@ -6,7 +6,9 @@ Example: http://54.250.223.230/book/
 
 ### New posts with daum book api
 
-While writing a new post, you can search book information by using daum book api [http://dna.daum.net/apis/search/ref#book].
+While writing a new post, you can search book information by using daum book api.
+
+http://dna.daum.net/apis/search/ref#book
 
 If you want to write with it, you shold follow below steps.
 
