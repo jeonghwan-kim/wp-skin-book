@@ -2343,9 +2343,11 @@ p.comment-form-comment {
 }
 .analysis h1 {
 	font-size: 30px;
-	color: #ddd;
 	margin-top: 10px;
 	margin-bottom: 10px;
+}
+.analysis h1, .analysis p{
+	color: #ddd;
 }
 .analysis .one-box { 
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -2363,9 +2365,14 @@ p.comment-form-comment {
 	margin-top: 40px;
 	height: 200px;
 }
-
 #google-chart-month, #google-chart-year {
 	margin-top: 30px;
+}
+#recommend {
+	text-align: center;
+}
+#pre-recommend-books, #next-recommend-books {
+	display: none;
 }
 
 /* 모달 페이지 */

@@ -3,7 +3,7 @@
 
 <div class="analysis">
 
-	<div class="row-fluid one-box">
+ 	 <div class="row-fluid one-box" id="by-author">
 		<div class="span6">
 			<h1>저자별 분석</h1>
 			<?php wp_tag_cloud(array('taxonomy'=>'book_author','format'=>'flat')); ?>
@@ -12,6 +12,15 @@
 			<div id="google-chart-author"></div>
 			<p class="graph-title">상위 5명 저자</p>
 		</div> 
+
+		<!-- <h1>도서추천</h1> -->
+		<p>지금까지 읽은 도서의 저자를 기준으로 새로운 도서를 추천합니다.</p>
+		<div id="recommend" class="bookshelf"></div> 
+		<div class="my-nav">
+			<div class="nav-previous"><a id="pre-recommend-books" href="#by-author">← 이전</a></div>
+			<div class="nav-next"><a id="next-recommend-books" href="#by-author">다음 →</a></div>
+		</div>
+
 	</div>
 
 	<div class="row-fluid  one-box">
@@ -46,7 +55,15 @@
 		</div>				
 		<div id="google-chart-year"></div> 
 	</div>
-
+ 
+	<div class="one-box">
+		<!-- <h1>도서추천</h1>
+		<p>지금까지 읽은 도서의 저자를 기준으로 새로운 도서를 추천합니다.</p>
+		<div id="recommend" class="bookshelf"></div> 
+		<div class="my-nav">
+			<div class="nav-previous"><a id="pre-recommend-books" href="#recommend">← 이전</a></div>
+			<div class="nav-next"><a id="next-recommend-books" href="#recommend">다음 →</a></div>
+		</div> -->
 	</div>
 
 </div> <!-- analysis -->
