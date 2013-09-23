@@ -135,3 +135,59 @@ function get_book_publisher($postID)
  * @since 2013. 9. 16. 
  */
 add_editor_style();
+
+
+/**
+ * 위키api호출
+ * 입력: 위키 키워드
+ *      option: article
+ * 출력: 위키 본문 (설명만)
+ */
+function get_wiki_content($keyword) {
+	$keyword = urlencode($keyword);
+	$query = "http://ko.wikipedia.org/w/api.php?action=parse&page=$keyword&format=json";
+	$result = "";
+
+	// api 호출
+	$wiki = json_decode( file_get_contents($query) );
+
+	// 에러처리
+	if (isset($wiki->error)) return $result;
+
+	// html 얻기
+	$html = "";
+	$wiki = $wiki->parse->text;
+	foreach ($wiki as $key => $value) {
+		if ($key == "*") {
+			$html = $value;
+			break;
+		}
+	}
+	if ($html == "") return $result;
+
+	// <p> 태그만 추출
+	require_once ('simple_html_dom.php');
+	$html = str_get_html($html);
+	foreach ($html->find('p') as $elem) {
+		$result = $result . ' ' . $elem->innertext;
+	}
+	if ($result == "") return $result;
+
+	// 링크 제거
+	$result = str_get_html($result);
+	foreach ($result->find('a') as $elem) {
+		$elem->href = null;
+	}
+	if ($result == "") return $result;
+
+	// 결과 길이 제한
+	if (strlen($result) > 1000) {
+		$result = substr($result, 0, 1000);
+
+		$last_space_pos = strrpos($result, ' ');
+		$result = substr($result, 0, $last_space_pos);
+		$result .= '......';
+	}
+
+	return $result;
+}

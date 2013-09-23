@@ -2440,6 +2440,21 @@ p.comment-form-comment {
 	padding-top: 20px;
 }
 
+.author-info {
+	clear:both;
+}
+.author-info h1 {
+	margin: 10px 0;
+	font-size: 150%;
+}
+.author-info a {
+	text-decoration: none;
+	color: black;
+	font-size: 85%;
+}
+.author-info p {
+	font-size: 90%;
+}
 
 
 

@@ -57,9 +57,20 @@ get_header(); ?>
 			else :
 				get_template_part( 'content', get_post_format() );
 			endif;
+
 		?>
 
 	<?php endwhile; ?>
+
+	<!-- 위키백과의 저자정보 출력 -->
+	<?php $author = strip_tags(get_book_author($post->ID)); ?>
+	<?php $wiki = get_wiki_content($author); ?>
+	<?php if ($wiki != "") : ?>
+		<div class="author-info well well-small">
+			<h1><?php echo $author; ?></h1>
+			<p><?php echo $wiki; ?> <span class="label">위키백과</span></p>
+		</div>
+	<?php endif; ?>
 
 	<?php my_nav(); ?>
 
