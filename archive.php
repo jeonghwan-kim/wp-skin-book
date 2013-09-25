@@ -64,13 +64,41 @@ get_header(); ?>
 
 	<!-- 위키백과의 저자정보 출력 -->
 	<?php $author = strip_tags(get_book_author($post->ID)); ?>
-	<?php $wiki = get_wiki_content($author); ?>
-	<?php if ($wiki != "") : ?>
-		<div class="author-info well well-small">
-			<h1><?php echo $author; ?></h1>
-			<p><?php echo $wiki; ?> <span class="label">위키백과</span></p>
-		</div>
-	<?php endif; ?>
+	<input type="hidden" id="author" value="<?php echo $author; ?>" />
+	<input type="hidden" id="theme-path" value="<?php echo get_template_directory_uri(); ?>" />
+	<div id="author_wiki"></div>
+
+	<script type="text/javascript">
+		$(window).load(function() {
+			var path = $("#theme-path").val();
+			var author = $("#author").val();
+			
+			// 로딩중 이미지를 표시한다.
+			$("#author_wiki").append('<img src="'+path+'/images/loading.gif" />');
+			$("#author_wiki").attr("class", "author-info well well-small");
+			
+			// 위키정보를 요청한다.
+			path = path+"/ajax/get-wiki-content.php?keyword="+author;
+			$.get(path, function(data, status) {
+				// 로딩중 이미지를 숨긴다.
+				$("#author_wiki img").css("display", "none");
+
+				// 데이터가 없는 경우 div를 숨긴다.
+				if (data == "") {
+					$("#author_wiki").css("display", "none");
+					return;
+				}
+
+				// 데이터를 출력하다.
+				var wiki_link = "http://ko.wikipedia.org/wiki/" + author;
+				$("#author_wiki").append("<h1>"+ author +"</h1>");
+				$("#author_wiki").append("<p>"+ data +
+					' <a href="'+ wiki_link +
+					'"><span class="label">위키백과</span></a></p>');
+			});
+			
+		});
+	</script>
 
 	<?php my_nav(); ?>
 
